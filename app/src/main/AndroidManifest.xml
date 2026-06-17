@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="[http://schemas.android.com/apk/res/android](http://schemas.android.com/apk/res/android)"
+    xmlns:tools="[http://schemas.android.com/tools](http://schemas.android.com/tools)">
 
-    <uses-feature android:name="android.hardware.usb.host" />
-    <uses-permission android:name="android.permission.USB_PERMISSION" />
+    <!-- Informa ao sistema que o app exige a porta USB Host -->
+    <uses-feature android:name="android.hardware.usb.host" android:required="true" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:label="ESP32 OTG Tela"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         
+        <!-- launchMode="singleTop" evita que o Android abra 10 telas iguais se você plugar e desplugar o cabo rápido -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:launchMode="singleTop">
+            
+            <!-- Intent Padrão: Para abrir o app clicando no ícone -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- NOVO: Faz o app "escutar" quando o cabo OTG é conectado -->
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+            </intent-filter>
+
+            <!-- NOVO: Aponta para um arquivo que diz qual é o ID do seu ESP32 -->
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+
         </activity>
     </application>
 </manifest>
-
