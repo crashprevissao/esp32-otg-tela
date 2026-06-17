@@ -13,20 +13,20 @@ jobs:
     steps:
     - name: Checkout do codigo
       uses: actions/checkout@v4
-
+      
     - name: Configurar o JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Configurar e Compilar com Gradle
+    - name: Compilar App
       uses: gradle/gradle-build-action@v3
       with:
         gradle-version: '8.2'
-        arguments: assembleDebug
+        arguments: :app:assembleDebug
 
-    - name: Enviar o APK Pronto para Download
+    - name: Enviar o APK Pronto
       uses: actions/upload-artifact@v4
       with:
         name: ESP32-OTG-App
