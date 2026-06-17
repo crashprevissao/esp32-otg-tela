@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.google.com/apk/res/android">
-    <uses-feature android:name="android.hardware.usb.host" android:required="true" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
     <application
         android:allowBackup="true"
-        android:label="ESP32 Tela OTG"
+        android:label="ESP32 OTG Tela"
+        android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:screenOrientation="landscape"
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -17,3 +20,4 @@
         </activity>
     </application>
 </manifest>
+
