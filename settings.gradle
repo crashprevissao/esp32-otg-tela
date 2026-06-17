@@ -13,6 +13,5 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "ESP32Display"
+rootProject.name = "esp32-otg-tela"
 include ':app'
-
