@@ -14,18 +14,16 @@ jobs:
     - name: Checkout do codigo
       uses: actions/checkout@v3
       
-    - name: Configurar o JDK 17 (Java Correto)
+    - name: Configurar o JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: gradle
 
-    - name: Dar permissao de execucao ao Gradle
-      run: chmod +x gradlew
-
-    - name: Compilar o Aplicativo (Gerar APK)
-      run: ./gradlew assembleDebug
+    - name: Configurar e Compilar com Gradle
+      uses: gradle/gradle-build-action@v3
+      with:
+        arguments: assembleDebug
 
     - name: Enviar o APK Pronto para Download
       uses: actions/upload-artifact@v3
